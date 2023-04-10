@@ -1,0 +1,34 @@
+.task {
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        height: 70px;
+        padding: 15px;
+        border: 1px solid rgb(14, 239, 224);
+        border-radius: 30px;
+        background: linear-gradient(to top left, rgb(37, 210, 72), rgb(117, 26, 144));
+        margin-bottom: 15px;
+
+        p {
+            margin: 0;
+        }
+        
+    }
+
+    &__btns {
+        margin-top: auto;
+    }
+    
+    &__btn {
+        height: 25px;
+        border: none;
+        background: rgba(235, 229, 229, 0.981);
+        border-radius: 10px;
+
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+    }
+}

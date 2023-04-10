@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Component } from '@angular/core';
+import { Subject, tap, takeUntil } from 'rxjs';
 import { HttpService } from 'src/app/services/http.service';
 import { ITask } from 'src/app/types/task.interface';
 
@@ -8,7 +8,10 @@ import { ITask } from 'src/app/types/task.interface';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent {
+  public taskDone: boolean = true;
+  public taskInWork: boolean = false;
+  public startPoint: number = Math.random();
   public tasks: ITask[];
 	public isLoading: boolean;
 	private unsubscribe$: Subject<void> = new Subject();
