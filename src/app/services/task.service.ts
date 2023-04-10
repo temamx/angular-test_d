@@ -5,5 +5,10 @@ import { ITask } from '../types/task.interface';
   providedIn: 'root'
 })
 export class TaskService {
+  // public 
   constructor() { }
+
+  public addTask(title: string) {
+    
+  }
 }

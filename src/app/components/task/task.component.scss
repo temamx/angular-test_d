@@ -31,4 +31,17 @@
             margin-right: 10px;
         }
     }
+
+    &__edit {
+        display: flex;
+        margin-top: auto;
+
+        input {
+            margin-right: 10px;
+            outline: none;
+            user-select: none;
+            border: none;
+            border-radius: 3px;
+        }
+    }
 }

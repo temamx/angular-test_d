@@ -13,18 +13,14 @@
       <div class="home__task-container">
         <div class="home__list" [(ngModel)]="taskInWork">
           <p>Todo</p>
-          <app-task *ngFor="let task of tasks | slice:0:10 | taskFilter:taskInWork" [task]="task" class="taska"></app-task>
+          <app-task *ngFor="let task of tasks | slice:0:10 | taskFilter:taskInWork" [task]="task"></app-task>
         </div>
         
         <div class="home__list" [(ngModel)]="taskDone">
           <p>Done</p>
-          <app-task *ngFor="let task of tasks | slice:0:10 | taskFilter:taskDone" [task]="task" class="taska"></app-task>
+          <app-task *ngFor="let task of tasks | slice:0:10 | taskFilter:taskDone" [task]="task"></app-task>
         </div>
       </div>
-
-      <!-- <div class="home__footer">
-        <p>You have </p>
-      </div> -->
     </div>
   </div>
 </section>
