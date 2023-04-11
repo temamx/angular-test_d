@@ -4,20 +4,20 @@
     <!-- Этот блок отображается, если задача в работе -->
     <div class="task__btns" *ngIf="!edited && !task.completed">
         <button class="task__btn" (click)="edited = !edited">Edit</button>
-        <button class="task__btn">Mark as done</button>
-        <button class="task__btn">Delete</button>
+        <button class="task__btn" (click)="changeStatus(task)">Mark as done</button>
+        <button class="task__btn" (click)="removeTask(task)">Delete</button>
     </div>
 
     <!-- Этот блок отображается, если задача выполнена -->
-    <div class="task__btns" *ngIf="task.completed">
-        <button class="task__btn">Edit</button>
-        <button class="task__btn">Back to work</button>
-        <button class="task__btn">Delete</button>
+    <div class="task__btns" *ngIf="!edited && task.completed">
+        <button class="task__btn" (click)="edited = !edited">Edit</button>
+        <button class="task__btn" (click)="changeStatus(task)">Back to work</button>
+        <button class="task__btn" (click)="removeTask(task)">Delete</button>
     </div>
 
     <!-- Этот блок отображается, если пользователь кликнул на кнопку Edit -->
     <div class="task__edit" *ngIf="edited">
-        <input type="text" #editedInput [value]="task.title" (keyup.enter)="editTask(editedInput.value)">
+        <input type="text" name="editedInput" #editedInput [value]="task.title" (keyup.enter)="editTask(editedInput.value)">
         <div class="task__edit-btns">
             <button class="task__btn" (click)="editTask(editedInput.value)">Save</button>
             <button class="task__btn" (click)="edited = !edited">Cancel</button>

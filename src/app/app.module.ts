@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TaskComponent } from './components/task/task.component';
-import { TaskListComponent } from './components/task-list/task-list.component';
 import { HomeComponent } from './components/home/home.component';
 
 import { TaskFilterPipe } from './pipes/task-filter.pipe';
@@ -15,7 +14,6 @@ import { TaskFilterPipe } from './pipes/task-filter.pipe';
   declarations: [
     AppComponent,
     TaskComponent,
-    TaskListComponent,
     HomeComponent,
     TaskFilterPipe
   ],

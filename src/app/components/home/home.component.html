@@ -3,24 +3,27 @@
     <div class="home__wrapper">
       <h1>ToDoList</h1>
 
-      <div class="home__input">
-        <input placeholder="Add new todo" type="text" id="task__add">
-        <button class="home__btn">
+      <form class="home__input">
+        <input placeholder="Add new todo" type="text" #task__add name="task__add" [(ngModel)]="inputTitle">
+        <button class="home__btn" (click)="onCreateTask(task__add.value)">
           <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48"><path d="M450 856V606H200v-60h250V296h60v250h250v60H510v250h-60Z"/></svg>
         </button>
-      </div>
+      </form>
 
-      <div class="home__task-container">
-        <div class="home__list" [(ngModel)]="taskInWork">
+      <ng-container *ngIf="isLoading">Загрузка ...</ng-container>
+      
+      <div *ngIf="!isLoading" class="home__task-container">
+        <div class="home__list">
           <p>Todo</p>
-          <app-task *ngFor="let task of tasks | slice:0:10 | taskFilter:taskInWork" [task]="task"></app-task>
+          <app-task *ngFor="let task of tasks | slice:startPoint:endPoint | taskFilter:!taskDone" [task]="task"></app-task>
         </div>
         
-        <div class="home__list" [(ngModel)]="taskDone">
+        <div class="home__list">
           <p>Done</p>
-          <app-task *ngFor="let task of tasks | slice:0:10 | taskFilter:taskDone" [task]="task"></app-task>
+          <app-task *ngFor="let task of tasks | slice:startPoint:endPoint | taskFilter:taskDone" [task]="task"></app-task>
         </div>
       </div>
+
     </div>
   </div>
 </section>

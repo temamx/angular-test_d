@@ -21,3 +21,8 @@ p {
 button {
     cursor: pointer;
 }
+
+.home__list.ng-untouched.ng-valid.ng-dirty {
+    display: block;
+    visibility: visible;
+}

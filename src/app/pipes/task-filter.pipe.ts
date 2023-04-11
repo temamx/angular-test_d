@@ -7,6 +7,6 @@ import { ITask } from '../types/task.interface';
 export class TaskFilterPipe implements PipeTransform {
 
   transform(tasks: ITask[], value: boolean): ITask[] {
-    return tasks.filter(task => task.completed === value);
+    return tasks?.filter(task => task.completed === value);
   }
 }
