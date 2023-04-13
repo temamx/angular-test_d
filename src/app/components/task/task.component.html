@@ -4,15 +4,15 @@
     <!-- Этот блок отображается, если задача в работе -->
     <div class="task__btns" *ngIf="!edited && !task.completed">
         <button class="task__btn" (click)="edited = !edited">Edit</button>
-        <button class="task__btn" (click)="changeStatus(task)">Mark as done</button>
-        <button class="task__btn" (click)="removeTask(task)">Delete</button>
+        <button class="task__btn" (click)="onCompleted.emit(task)">Mark as done</button>
+        <button class="task__btn" (click)="onRemove.emit(task)">Delete</button>
     </div>
 
     <!-- Этот блок отображается, если задача выполнена -->
     <div class="task__btns" *ngIf="!edited && task.completed">
         <button class="task__btn" (click)="edited = !edited">Edit</button>
-        <button class="task__btn" (click)="changeStatus(task)">Back to work</button>
-        <button class="task__btn" (click)="removeTask(task)">Delete</button>
+        <button class="task__btn" (click)="onCompleted.emit(task)">Back to work</button>
+        <button class="task__btn" (click)="onRemove.emit(task)">Delete</button>
     </div>
 
     <!-- Этот блок отображается, если пользователь кликнул на кнопку Edit -->

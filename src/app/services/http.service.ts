@@ -21,32 +21,23 @@ export class HttpService {
     return this._http.get<ITask[]>(this.url);
   }
 
-  public onCreate(inputTitle: string): void {
+  public onCreate(inputTitle: string): Observable<ITask> | undefined {
     if (inputTitle) {
-      this._http.post<ITask>(this.url, {
+      return this._http.post<ITask>(this.url, {
         title: inputTitle,
         completed: false
-      }).subscribe();
-    }
+      })
+    } else return;
   }
 
-  public onRemove(todoOnDelete: ITask): void {
-    this._http.delete<ITask>(`${this.url}/${todoOnDelete.id}`).subscribe(
-      ()=> {
-        if (this.taskList) {
-          this.taskList = this.taskList.filter(todo => todo.id !== todoOnDelete.id)
-          console.log(this.taskList);
-        }
-      }
-    );
+  public onRemove(todoOnDelete: ITask): Observable<ITask> {
+    return this._http.delete<ITask>(`${this.url}/${todoOnDelete.id}`)
   }
 
-  public onCompleted(todo: ITask): void {
-    this._http.put<ITask>(`${this.url}/${todo.id}`, {
+  public onCompleted(todo: ITask): Observable<ITask> {
+    return this._http.put<ITask>(`${this.url}/${todo.id}`, {
       title: todo.title,
       completed: !todo.completed
-    }).subscribe();
+    })
   }
-
-
 }

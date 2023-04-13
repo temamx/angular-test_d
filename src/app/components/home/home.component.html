@@ -15,12 +15,22 @@
       <div *ngIf="!isLoading" class="home__task-container">
         <div class="home__list">
           <p>Todo</p>
-          <app-task *ngFor="let task of tasks | slice:startPoint:endPoint | taskFilter:!taskDone" [task]="task"></app-task>
+          <app-task
+          *ngFor="let task of randomTasks | taskFilter:!taskDone"
+          (onRemove)="onRemove(task)"
+          (onCompleted)="onCompleted(task)" 
+          [task]="task"
+          ></app-task>
         </div>
         
         <div class="home__list">
           <p>Done</p>
-          <app-task *ngFor="let task of tasks | slice:startPoint:endPoint | taskFilter:taskDone" [task]="task"></app-task>
+          <app-task 
+          *ngFor="let task of randomTasks | taskFilter:taskDone" 
+          (onRemove)="onRemove(task)"
+          (onCompleted)="onCompleted(task)"
+          [task]="task"
+          ></app-task>
         </div>
       </div>
 

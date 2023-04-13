@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { ITask } from 'src/app/types/task.interface';
 
@@ -8,10 +8,13 @@ import { ITask } from 'src/app/types/task.interface';
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent {
-  @Input() public task: ITask;
   public edited: boolean = false;
+  @Input() public task: ITask;
 
   constructor(private httpService: HttpService) { }
+
+  @Output() public onRemove: EventEmitter<ITask> = new EventEmitter<ITask>();
+  @Output() public onCompleted: EventEmitter<ITask> = new EventEmitter<ITask>();
 
   public editTask(newTitle: string) {
     if (!newTitle) return;
@@ -19,12 +22,4 @@ export class TaskComponent {
     this.task.title = newTitle;
   }
 
-  public removeTask(todo: ITask) {
-    this.httpService.onRemove(todo);
-  }
-
-  public changeStatus(todo: ITask) {
-    this.httpService.onCompleted(todo);
-    this.task.completed = !this.task.completed;
-  }
 }
