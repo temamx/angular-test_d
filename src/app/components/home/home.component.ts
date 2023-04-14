@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { Subject, tap, takeUntil, take, Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { Subject, tap, takeUntil, take, Subscription, pipe } from 'rxjs';
 import { HttpService } from 'src/app/services/http.service';
 import { ITask } from 'src/app/types/task.interface';
 
@@ -28,10 +28,6 @@ export class HomeComponent {
     return randomTodos;
   }
 
-  // public checkChanges(tasks: ITask[]): void {
-  //   this.randomTasks = tasks;
-  // }
-
   public getTodos(): void {
     this.httpService
     .getTodos()
@@ -46,16 +42,15 @@ export class HomeComponent {
     .subscribe(); 
   }
 
-  // Доработать функцию
   public onCreateTask(inputTitle: string): void {
-    this.httpService.onCreate(inputTitle)?.subscribe(
+    this.httpService.onCreate(inputTitle)!.subscribe(
       () => {
         const newTask = {
           title: inputTitle,
           completed: false,
         }
         this.randomTasks.push(newTask);
-        console.log(this.randomTasks);
+        this.randomTasks = this.randomTasks.filter(todo => todo.title);
       }
     );
     this.inputTitle = '';
@@ -65,7 +60,6 @@ export class HomeComponent {
     this.httpService.onRemove(task).subscribe(
       () => {
         this.randomTasks = this.randomTasks.filter(todo => todo.id !== task.id);
-        console.log(this.randomTasks);
       }
     );
   }
