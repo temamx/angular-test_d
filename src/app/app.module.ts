@@ -9,13 +9,15 @@ import { TaskComponent } from './components/task/task.component';
 import { HomeComponent } from './components/home/home.component';
 
 import { TaskFilterPipe } from './pipes/task-filter.pipe';
+import { SortTitlePipe } from './pipes/sort-title.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskComponent,
     HomeComponent,
-    TaskFilterPipe
+    TaskFilterPipe,
+    SortTitlePipe
   ],
   imports: [
     BrowserModule,

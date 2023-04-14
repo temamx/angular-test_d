@@ -46,6 +46,7 @@ export class HomeComponent {
     .subscribe(); 
   }
 
+  // Доработать функцию
   public onCreateTask(inputTitle: string): void {
     this.httpService.onCreate(inputTitle)?.subscribe(
       () => {
@@ -70,7 +71,16 @@ export class HomeComponent {
   }
 
   public onCompleted(task: ITask): void {
-    this.httpService.onCompleted(task).subscribe();
+    this.httpService.onCompleted(task).subscribe(
+      () => {
+        this.randomTasks = this.randomTasks.map(todo => {
+          if (todo.id === task.id) {
+            todo.completed = !todo.completed;
+          }
+          return todo;
+        })
+      }
+    );
   }
 
   ngOnInit(): void {

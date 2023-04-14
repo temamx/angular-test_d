@@ -16,7 +16,7 @@
         <div class="home__list">
           <p>Todo</p>
           <app-task
-          *ngFor="let task of randomTasks | taskFilter:!taskDone"
+          *ngFor="let task of randomTasks | taskFilter:!taskDone | sortTitle"
           (onRemove)="onRemove(task)"
           (onCompleted)="onCompleted(task)" 
           [task]="task"
